@@ -61,19 +61,23 @@
     <ManifestKeyFile>ZargateTicketPrint_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>logo.ico</ApplicationIcon>
   </PropertyGroup>
-  <PropertyGroup>
-    <NoWin32Manifest>true</NoWin32Manifest>
-  </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup>
     <StartupObject>ZargateTicketPrint.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Hardcodet.Wpf.TaskbarNotification, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
@@ -160,13 +164,12 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Mysql.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="ZargateTicketPrint_1_TemporaryKey.pfx" />
-    <None Include="ZargateTicketPrint_TemporaryKey.pfx" />
     <None Include="ZebraHelpers\Printer.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Printer.Designer.cs</LastGenOutput>
