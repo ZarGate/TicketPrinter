@@ -1,0 +1,17 @@
+﻿<Application
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="ZargateTicketPrint.App"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+
+        <SolidColorBrush x:Key="HeaderGrey" Color="#FF888888"/>
+        <FontFamily x:Key="HeaderFont">Segoe UI</FontFamily>
+
+        <System:Double x:Key="HeaderFontSize">14</System:Double>
+        <FontWeight x:Key="HeaderStyle">Bold</FontWeight>
+        <Thickness x:Key="GroupBoxBorder">0</Thickness>
+        <SolidColorBrush x:Key="ButtonBackground" Color="Black"/>
+
+    </Application.Resources>
+</Application>

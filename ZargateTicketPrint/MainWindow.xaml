@@ -1,0 +1,95 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:tb="http://www.hardcodet.net/taskbar" 
+        xmlns:Custom="http://schemas.microsoft.com/wpf/2008/toolkit" 
+        xmlns:System="clr-namespace:System;assembly=mscorlib" 
+        x:Class="ZargateTicketPrint.MainWindow"
+        Title="Zargate Ticket Printer" 
+        Height="516" 
+        Width="525" 
+        Icon="logo.png" 
+        StateChanged="Window_StateChanged_1">
+    <Window.Resources>
+        <System:Double x:Key="ButtonHeight">32</System:Double>
+    </Window.Resources>
+    <Grid Background="#FF2E3D64">
+        <tb:TaskbarIcon x:Name="TrayIcon" 
+            IconSource="logo.ico">
+            <tb:TaskbarIcon.TrayToolTip>
+                <Border
+                    Width="250"
+                    Height="60"
+                    Opacity="0.9"
+                    Background="White"
+                    BorderBrush="Gray"
+                    BorderThickness="1" 
+                    CornerRadius="2">
+                <StackPanel Margin="3">
+                    <TextBlock FontWeight="Bold" FontSize="20px">Zargate Ticket Printer</TextBlock>
+                    <TextBlock FontSize="14px">Dobbelklikk for å åpne programmet.</TextBlock>
+                </StackPanel>
+                </Border>
+            </tb:TaskbarIcon.TrayToolTip>
+        </tb:TaskbarIcon>
+        <TabControl Height="280" Margin="10,10,10,0" VerticalAlignment="Top">
+            <TabItem Header="Print">
+                <Grid>
+                    <GroupBox Header="AUTOMATISK PRINTING" Margin="10,10,10,0" VerticalAlignment="Top" Height="97.96" FontFamily="{DynamicResource HeaderFont}" FontSize="{DynamicResource HeaderFontSize}" FontWeight="{DynamicResource HeaderStyle}" BorderThickness="{DynamicResource GroupBoxBorder}" Foreground="{DynamicResource HeaderGrey}">
+                        <Grid HorizontalAlignment="Left" Height="70" VerticalAlignment="Top" Width="455">
+                            <Button x:Name="btnAutoPrintStart" Content="Start" HorizontalAlignment="Left" Margin="10,30.96,0,0" VerticalAlignment="Top" Width="100" Click="btnAutoPrintStart_Click" FontFamily="{DynamicResource HeaderFont}" FontSize="{DynamicResource HeaderFontSize}" FontWeight="{DynamicResource HeaderStyle}" Foreground="{DynamicResource HeaderGrey}" Background="{x:Null}" Height="{DynamicResource ButtonHeight}" ToolTipService.ShowOnDisabled="True">
+                                <Button.ToolTip>
+                                    <ToolTip>
+                                        <StackPanel>
+                                            <TextBlock FontWeight="Bold">Databaseinnstillinger mangler</TextBlock>
+                                            <TextBlock>Du må fylle ut alle innstillingene under Database og lagre før du kan starte automatisk printing.</TextBlock>
+                                        </StackPanel>
+                                    </ToolTip>
+                                </Button.ToolTip>
+                            </Button>
+                            <Label Content="Status:" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Top" Width="52.097" RenderTransformOrigin="0.557,-0.228" FontFamily="Segoe UI" FontSize="12" FontWeight="Normal"/>
+                            <Label x:Name="lblStatus" Content="Stopped" HorizontalAlignment="Left" Margin="62.097,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.234,-0.231" Width="94.993" FontFamily="Segoe UI" FontSize="12" FontWeight="Normal" Foreground="Red"/>
+                            <Button x:Name="btnAutoPrintStop" Content="Stop" HorizontalAlignment="Left" Margin="115,30.96,0,0" VerticalAlignment="Top" Width="100" IsEnabled="False" Click="btnAutoPrintStop_Click" FontFamily="{DynamicResource HeaderFont}" FontSize="{DynamicResource HeaderFontSize}" FontWeight="{DynamicResource HeaderStyle}" Foreground="{DynamicResource HeaderGrey}" Background="{x:Null}" Height="{DynamicResource ButtonHeight}"/>
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Innstillinger">
+                <Grid>
+                    <GroupBox Header="DATABASE" Margin="10,114,10,0" VerticalAlignment="Top" Height="94.04" BorderThickness="{DynamicResource GroupBoxBorder}" Foreground="{DynamicResource HeaderGrey}" FontSize="{DynamicResource HeaderFontSize}" FontWeight="{DynamicResource HeaderStyle}" FontFamily="{DynamicResource HeaderFont}">
+                        <Grid HorizontalAlignment="Left" Height="68" VerticalAlignment="Top" Width="457" Margin="0,0,-2,0">
+                            <Label Content="Server:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Height="25" Margin="10,10,0,0" FontWeight="Normal" FontSize="12"/>
+                            <Label Content="Database:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Height="25" Margin="10,40,0,0" FontWeight="Normal" FontSize="12"/>
+                            <Label Content="Brukernavn:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Height="25" Margin="230,10,0,0" FontWeight="Normal" FontSize="12"/>
+                            <Label Content="Passord:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Height="25" Margin="230,38,0,0" FontWeight="Normal" FontSize="12"/>
+                            <TextBox x:Name="txtDatabaseServer" HorizontalAlignment="Left" Height="25" Margin="85,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" TabIndex="2" FontWeight="Normal" FontSize="12"/>
+                            <TextBox x:Name="txtDatabaseUsername" HorizontalAlignment="Left" Height="25" Margin="305,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" TabIndex="4" FontWeight="Normal" FontSize="12"/>
+                            <TextBox x:Name="txtDatabaseDatabase" HorizontalAlignment="Left" Height="25" Margin="85,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" TabIndex="3" FontWeight="Normal" FontSize="12"/>
+                            <PasswordBox x:Name="txtDatabasePassword" HorizontalAlignment="Left" Margin="305,40,0,0" VerticalAlignment="Top" Height="23" Width="140" TabIndex="5" FontFamily="Segoe UI" FontWeight="Normal" FontSize="12"/>
+                        </Grid>
+                    </GroupBox>
+                    <Button x:Name="btnSettingsSave" Content="Lagre" Margin="0,205.04,10,9.04" TabIndex="6" Click="btnSettingsSave_Click" HorizontalAlignment="Right" Width="100" Background="{x:Null}" FontSize="{DynamicResource HeaderFontSize}" FontWeight="{DynamicResource HeaderStyle}" Foreground="{DynamicResource HeaderGrey}" FontFamily="{DynamicResource HeaderFont}" Height="{DynamicResource ButtonHeight}"/>
+                    <GroupBox Header="PRINTER" Margin="10,10,10,0" VerticalAlignment="Top" Height="114" FontFamily="{DynamicResource HeaderFont}" FontSize="{DynamicResource HeaderFontSize}" Foreground="{DynamicResource HeaderGrey}" FontWeight="{DynamicResource HeaderStyle}" BorderThickness="{DynamicResource GroupBoxBorder}">
+                        <Grid HorizontalAlignment="Left" Height="83.04" VerticalAlignment="Top" Width="455">
+                            <Label Content="Printer HELG:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="110" Height="25" FontWeight="Normal" FontSize="12"/>
+                            <ComboBox x:Name="cmbBoxPrinterName1" Margin="125,10,10,0" VerticalAlignment="Top" Height="25" TabIndex="1" Background="{x:Null}" FontWeight="Normal" FontSize="12"/>
+                            <Label Content="Printer DAG:" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Width="110" Height="25" FontWeight="Normal" FontSize="12"/>
+                            <ComboBox x:Name="cmbBoxPrinterName2" Margin="125,45,10,0" VerticalAlignment="Top" Height="25" TabIndex="1" Background="{x:Null}" FontWeight="Normal" FontSize="12"/>
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Custom:DataGrid x:Name="DataGridLog" 
+    		CanUserAddRows="False"
+    		ItemsSource="{Binding}"
+    		IsReadOnly="True"
+    		AutoGenerateColumns="false" Margin="10,295,10,10">
+            <Custom:DataGrid.Columns>
+                <Custom:DataGridTextColumn Header="Tidspunkt" Binding="{Binding Path=Timestamp}" />
+                <Custom:DataGridTextColumn Header="Type" Binding="{Binding Path=Severity}" />
+                <Custom:DataGridTextColumn Header="Melding" Binding="{Binding Path=Message}" />
+            </Custom:DataGrid.Columns>
+        </Custom:DataGrid>
+    </Grid>
+</Window>
