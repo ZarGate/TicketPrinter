@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ZargateTicketPrint.ZebraHelpers
 {
-    internal class ZargateLabel
+    public class ZargateLabel
     {
         private readonly string commandString;
         private static Encoding Cp850Encoding = Encoding.GetEncoding(850);
@@ -15,27 +15,31 @@ namespace ZargateTicketPrint.ZebraHelpers
 
         public ZargateLabel(string name, int row, int seat, string type, string barcode)
         {
-            name = name.ToUpper().Replace("Ø", "O").Replace("Æ", "AE").Replace("Å", "A");
-            commandString = new LabelBuilder()
+            //name = name.ToUpper().Replace("Ø", "O").Replace("Æ", "AE").Replace("Å", "A");
+            var command = new LabelBuilder()
                 .Barcode(barcode).At(210, 375)
                 .Image(
                     Assembly.GetExecutingAssembly().GetManifestResourceStream("ZargateTicketPrint.zargate_main_logo.pcx"))
                 .At(200, 250)
                 .Text(name).At(220, 700)
-                .Text("PLASS: " + row + "-" + seat).At(195, 700)
                 .LargeText(type.ToUpper()).At(300, 770)
                 .Barcode(barcode).At(210, 1250)
                 .Image(
                     Assembly.GetExecutingAssembly().GetManifestResourceStream("ZargateTicketPrint.zargate_main_logo.pcx"))
-                .At(200, 1125).ToZebraInstruction();
+                .At(200, 1125);
+            if (seat != 0 && row !=0)
+            {
+                command.Text("PLASS: " + row + "-" + seat).At(195, 700);
+            }
+            commandString = command.ToZebraInstruction();
         }
 
-        public ZargateLabel(string type, string barcode)
+        public ZargateLabel(string type, string barcode, DateTime issuedDateTime)
         {
-            string date = DateTime.Now.ToLongTimeString();
-            string validUntilDate = DateTime.Now.Hour > 12
-                               ? (DateTime.Today + TimeSpan.FromDays(1)).ToShortDateString()
-                               : (DateTime.Today).ToShortDateString();
+            string date = issuedDateTime.ToLongTimeString();
+            string validUntilDate = issuedDateTime.Hour > 12
+                               ? (issuedDateTime + TimeSpan.FromDays(1)).ToShortDateString()
+                               : (issuedDateTime).ToShortDateString();
 
             if (type.ToUpper().Contains("DAG"))
             {

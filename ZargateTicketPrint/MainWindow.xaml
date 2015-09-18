@@ -25,14 +25,14 @@
                     BorderBrush="Gray"
                     BorderThickness="1" 
                     CornerRadius="2">
-                <StackPanel Margin="3">
-                    <TextBlock FontWeight="Bold" FontSize="20px">Zargate Ticket Printer</TextBlock>
-                    <TextBlock FontSize="14px">Dobbelklikk for å åpne programmet.</TextBlock>
-                </StackPanel>
+                    <StackPanel Margin="3">
+                        <TextBlock FontWeight="Bold" FontSize="20px">Zargate Ticket Printer</TextBlock>
+                        <TextBlock FontSize="14px">Dobbelklikk for å åpne programmet.</TextBlock>
+                    </StackPanel>
                 </Border>
             </tb:TaskbarIcon.TrayToolTip>
         </tb:TaskbarIcon>
-        <TabControl Height="280" Margin="10,10,10,0" VerticalAlignment="Top">
+        <TabControl Height="310" Margin="10,10,10,0" VerticalAlignment="Top">
             <TabItem Header="Print">
                 <Grid>
                     <GroupBox Header="AUTOMATISK PRINTING" Margin="10,10,10,0" VerticalAlignment="Top" Height="97.96" FontFamily="{DynamicResource HeaderFont}" FontSize="{DynamicResource HeaderFontSize}" FontWeight="{DynamicResource HeaderStyle}" BorderThickness="{DynamicResource GroupBoxBorder}" Foreground="{DynamicResource HeaderGrey}">
@@ -56,19 +56,17 @@
             </TabItem>
             <TabItem Header="Innstillinger">
                 <Grid>
-                    <GroupBox Header="DATABASE" Margin="10,114,10,0" VerticalAlignment="Top" Height="94.04" BorderThickness="{DynamicResource GroupBoxBorder}" Foreground="{DynamicResource HeaderGrey}" FontSize="{DynamicResource HeaderFontSize}" FontWeight="{DynamicResource HeaderStyle}" FontFamily="{DynamicResource HeaderFont}">
-                        <Grid HorizontalAlignment="Left" Height="68" VerticalAlignment="Top" Width="457" Margin="0,0,-2,0">
-                            <Label Content="Server:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Height="25" Margin="10,10,0,0" FontWeight="Normal" FontSize="12"/>
-                            <Label Content="Database:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Height="25" Margin="10,40,0,0" FontWeight="Normal" FontSize="12"/>
-                            <Label Content="Brukernavn:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Height="25" Margin="230,10,0,0" FontWeight="Normal" FontSize="12"/>
-                            <Label Content="Passord:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Height="25" Margin="230,38,0,0" FontWeight="Normal" FontSize="12"/>
-                            <TextBox x:Name="txtDatabaseServer" HorizontalAlignment="Left" Height="25" Margin="85,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" TabIndex="2" FontWeight="Normal" FontSize="12"/>
-                            <TextBox x:Name="txtDatabaseUsername" HorizontalAlignment="Left" Height="25" Margin="305,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" TabIndex="4" FontWeight="Normal" FontSize="12"/>
-                            <TextBox x:Name="txtDatabaseDatabase" HorizontalAlignment="Left" Height="25" Margin="85,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="140" TabIndex="3" FontWeight="Normal" FontSize="12"/>
-                            <PasswordBox x:Name="txtDatabasePassword" HorizontalAlignment="Left" Margin="305,40,0,0" VerticalAlignment="Top" Height="23" Width="140" TabIndex="5" FontFamily="Segoe UI" FontWeight="Normal" FontSize="12"/>
+                    <GroupBox Header="SERVER" Margin="10,114,10,0" VerticalAlignment="Top" Height="127" BorderThickness="{DynamicResource GroupBoxBorder}" Foreground="{DynamicResource HeaderGrey}" FontSize="{DynamicResource HeaderFontSize}" FontWeight="{DynamicResource HeaderStyle}" FontFamily="{DynamicResource HeaderFont}">
+                        <Grid HorizontalAlignment="Left" Width="457" Height="106" VerticalAlignment="Top">
+                            <Label Content="FetchArrived uri:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Height="25" Margin="10,10,0,0" FontWeight="Normal" FontSize="12"/>
+                            <Label Content="SetPrinted uri:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="110" Height="25" Margin="10,40,0,0" FontWeight="Normal" FontSize="12"/>
+                            <Label Content="Secret:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Height="25" Margin="10,70,0,-1" FontWeight="Normal" FontSize="12"/>
+                            <TextBox x:Name="txtFetchArrivedEndpoint" HorizontalAlignment="Left" Height="25" Margin="125,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="320" TabIndex="2" FontWeight="Normal" FontSize="12"/>
+                            <TextBox x:Name="txtSetPrintedEndpoint" HorizontalAlignment="Left" Height="25" Margin="125,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="320" TabIndex="3" FontWeight="Normal" FontSize="12"/>
+                            <PasswordBox x:Name="txtSecret" HorizontalAlignment="Left" Margin="125,72,0,0" VerticalAlignment="Top" Height="23" Width="320" TabIndex="5" FontFamily="Segoe UI" FontWeight="Normal" FontSize="12"/>
                         </Grid>
                     </GroupBox>
-                    <Button x:Name="btnSettingsSave" Content="Lagre" Margin="0,205.04,10,9.04" TabIndex="6" Click="btnSettingsSave_Click" HorizontalAlignment="Right" Width="100" Background="{x:Null}" FontSize="{DynamicResource HeaderFontSize}" FontWeight="{DynamicResource HeaderStyle}" Foreground="{DynamicResource HeaderGrey}" FontFamily="{DynamicResource HeaderFont}" Height="{DynamicResource ButtonHeight}"/>
+                    <Button x:Name="btnSettingsSave" Content="Lagre" Margin="0,241,30,0" TabIndex="6" Click="btnSettingsSave_Click" HorizontalAlignment="Right" Width="100" Background="{x:Null}" FontSize="{DynamicResource HeaderFontSize}" FontWeight="{DynamicResource HeaderStyle}" Foreground="{DynamicResource HeaderGrey}" FontFamily="{DynamicResource HeaderFont}" Height="{DynamicResource ButtonHeight}" VerticalAlignment="Top"/>
                     <GroupBox Header="PRINTER" Margin="10,10,10,0" VerticalAlignment="Top" Height="114" FontFamily="{DynamicResource HeaderFont}" FontSize="{DynamicResource HeaderFontSize}" Foreground="{DynamicResource HeaderGrey}" FontWeight="{DynamicResource HeaderStyle}" BorderThickness="{DynamicResource GroupBoxBorder}">
                         <Grid HorizontalAlignment="Left" Height="83.04" VerticalAlignment="Top" Width="455">
                             <Label Content="Printer HELG:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="110" Height="25" FontWeight="Normal" FontSize="12"/>
@@ -84,7 +82,7 @@
     		CanUserAddRows="False"
     		ItemsSource="{Binding}"
     		IsReadOnly="True"
-    		AutoGenerateColumns="false" Margin="10,295,10,10">
+    		AutoGenerateColumns="false" Margin="10,325,10,10">
             <Custom:DataGrid.Columns>
                 <Custom:DataGridTextColumn Header="Tidspunkt" Binding="{Binding Path=Timestamp}" />
                 <Custom:DataGridTextColumn Header="Type" Binding="{Binding Path=Severity}" />

@@ -1,29 +1,25 @@
-﻿namespace ZargateTicketPrint.Classes
+﻿using System;
+
+namespace ZargateTicketPrint.Classes
 {
     class Ticket
     {
         private readonly int _ticketId;
-        private readonly int _userId;
         private readonly int _rad;
         private readonly int _sete;
         private readonly string _navn;
-        private readonly int _refNr;
+        private readonly long _refNr;
+        private readonly Variants _type;
+        private readonly DateTime _arrived;
 
-        public int RefNr
+        public long RefNr
         {
             get { return _refNr; }
         }
 
-        private readonly Variants _type;
-
         public int TicketId
         {
             get { return _ticketId; }
-        }
-
-        public int UserId
-        {
-            get { return _userId; }
         }
 
         public int Rad
@@ -44,6 +40,11 @@
         public Variants Type
         {
             get { return _type; }
+        }
+
+        public DateTime Arrived
+        {
+            get { return _arrived; }
         }
 
         public string TypeString
@@ -68,25 +69,25 @@
             }
         }
 
-        public Ticket(int ticketId, int userId, int rad, int sete, string navn, int refNr, Variants type)
+        public Ticket(int ticketId, int rad, int sete, string navn, long refNr, Variants type, DateTime arrived)
         {
             _ticketId = ticketId;
-            _userId = userId;
             _rad = rad;
             _sete = sete;
             _navn = navn;
             _type = type;
+            _arrived = arrived;
             _refNr = refNr;
         }
 
-        public Ticket(int ticketId, int refNr, Variants type)
+        public Ticket(int ticketId, long refNr, Variants type, DateTime arrived)
         {
             _ticketId = ticketId;
-            _userId = 0;
             _rad = 0;
             _sete = 0;
             _navn = "";
             _type = type;
+            _arrived = arrived;
             _refNr = refNr;
         }
 

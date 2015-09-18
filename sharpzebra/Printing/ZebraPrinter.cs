@@ -11,7 +11,7 @@ namespace Com.SharpZebra.Printing
         }
 
         private ZebraPrinter(string rawPrinterName, string jobName)
-        {
+        { 
             this.rawPrinterName = rawPrinterName;
             this.jobName = jobName;
         }

@@ -5,7 +5,6 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
 using ZargateTicketPrint.Classes;
-using ZargateTicketPrint.Database;
 using ZargateTicketPrint.ZebraHelpers;
 
 namespace ZargateTicketPrint
@@ -57,13 +56,13 @@ namespace ZargateTicketPrint
             }
             Logger.Add("Selected \"" + cmbBoxPrinterName2.SelectedItem + "\" as ticket printer2.");
 
-            txtDatabaseServer.Text = Mysql.Default.server;
-            txtDatabaseDatabase.Text = Mysql.Default.database;
-            txtDatabaseUsername.Text = Mysql.Default.username;
-            txtDatabasePassword.Password = Mysql.Default.password;
 
-            if (txtDatabaseServer.Text == "" || txtDatabaseDatabase.Text == "" || txtDatabaseUsername.Text == "" ||
-                txtDatabasePassword.Password == "")
+            txtFetchArrivedEndpoint.Text = Api.Api.Default.FetchArrivedEndpoint;
+            txtSetPrintedEndpoint.Text=Api.Api.Default.SetPrintedEndpoint;
+            txtSecret.Password= Api.Api.Default.Secret;
+
+            if (txtFetchArrivedEndpoint.Text == "" || txtSetPrintedEndpoint.Text == "" ||
+                txtSecret.Password == "")
             {
                 btnAutoPrintStart.IsEnabled = false;
             }
@@ -91,10 +90,26 @@ namespace ZargateTicketPrint
 
         private void _printTimer_Tick(object sender, EventArgs e)
         {
-            if (_printThread == null || !_printThread.IsAlive)
+            //if (_printThread == null || !_printThread.IsAlive)
+            //{
+            //    try
+            //    {
+            //        _printThread = new Thread(new Tickets().PrintTicketsFromDatabase);
+            //        _printThread.Start();
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        autoPrintStop();
+            //    }
+            //}
+            try
             {
-                _printThread = new Thread(new Tickets().PrintTicketsFromDatabase);
-                _printThread.Start();
+                new Tickets().PrintTicketsFromDatabase();
+            }
+            catch (Exception ex)
+            {
+                Logger.Add("Exception: " + ex.Message, Logger.Severity.ERROR);
+                autoPrintStop();
             }
             refreshLogView();
         }
@@ -121,14 +136,13 @@ namespace ZargateTicketPrint
             Printer.Default.Save();
 
 
-            Mysql.Default.server = txtDatabaseServer.Text;
-            Mysql.Default.database = txtDatabaseDatabase.Text;
-            Mysql.Default.username = txtDatabaseUsername.Text;
-            Mysql.Default.password = txtDatabasePassword.Password;
-            Mysql.Default.Save();
+            Api.Api.Default.FetchArrivedEndpoint = txtFetchArrivedEndpoint.Text;
+            Api.Api.Default.SetPrintedEndpoint = txtSetPrintedEndpoint.Text;
+            Api.Api.Default.Secret = txtSecret.Password;
+            Api.Api.Default.Save();
 
-            if (txtDatabaseServer.Text == "" || txtDatabaseDatabase.Text == "" || txtDatabaseUsername.Text == "" ||
-                txtDatabasePassword.Password == "")
+            if (txtFetchArrivedEndpoint.Text == "" || txtSetPrintedEndpoint.Text == ""  ||
+                txtSecret.Password == "")
             {
                 btnAutoPrintStart.IsEnabled = false;
             }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Com.SharpZebra.Printing;
-using ZargateTicketPrint.Database;
+using ZargateTicketPrint.Api;
 using ZargateTicketPrint.ZebraHelpers;
 
 namespace ZargateTicketPrint.Classes
@@ -15,23 +15,15 @@ namespace ZargateTicketPrint.Classes
                 return;
             }
 
-            List<Ticket> arrived = new TicketHelper().FetchArrivedPeople();
+            ICollection<Ticket> arrived = TicketHelper.FetchTickets();
             if (arrived == null)
             {
                 return;
             }
             doPrint(arrived);
-
-
-            List<Ticket> arrivedNoNames = new TicketHelper().FetchArrivedPeopleWithNoName();
-            if (arrivedNoNames == null)
-            {
-                return;
-            }
-            doPrint(arrivedNoNames);
         }
 
-        private void doPrint(List<Ticket> tickets)
+        private void doPrint(ICollection<Ticket> tickets)
         {
             foreach (Ticket ticket in tickets)
             {
@@ -45,12 +37,12 @@ namespace ZargateTicketPrint.Classes
                 }
                 else if (ticket.Type == Ticket.Variants.HELGU)
                 {
-                    command = new ZargateLabel(ticket.TypeString, ticket.RefNr.ToString());
+                    command = new ZargateLabel(ticket.TypeString, ticket.RefNr.ToString(), ticket.Arrived);
                     printer = Printer.Default.PrinterName1;
                 }
                 else
                 {
-                    command = new ZargateLabel(ticket.TypeString, ticket.RefNr.ToString());
+                    command = new ZargateLabel(ticket.TypeString, ticket.RefNr.ToString(), ticket.Arrived);
                     printer = Printer.Default.PrinterName2;
                 }
                 string instruction = command.ToZebraInstruction();

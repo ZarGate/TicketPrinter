@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ZargateTicketPrint.Api" GeneratedClassName="Api">
+  <Profiles />
+  <Settings>
+    <Setting Name="FetchArrivedEndpoint" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://zargate.local/webservice/?method=checkin&amp;action=fetchArrived</Value>
+    </Setting>
+    <Setting Name="Secret" Type="System.String" Scope="User">
+      <Value Profile="(Default)">WmFyR2F0ZUlzVGhlQmVzdEV2ZXJZZXNMb2x6</Value>
+    </Setting>
+    <Setting Name="SetPrintedEndpoint" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://zargate.local/webservice/?method=checkin&amp;action=setPrinted</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

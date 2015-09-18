@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZargateTicketPrint", "ZargateTicketPrint\ZargateTicketPrint.csproj", "{F1C949D6-C678-44E2-A4FF-53F46BC27F0E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.SharpZebra", "sharpzebra\Com.SharpZebra.csproj", "{31D7D48D-D093-4B68-B540-0CD4F2220C30}"
