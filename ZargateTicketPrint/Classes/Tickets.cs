@@ -27,22 +27,19 @@ namespace ZargateTicketPrint.Classes
         {
             foreach (Ticket ticket in tickets)
             {
-                ZargateLabel command;
                 string printer;
-                if (ticket.Type == Ticket.Variants.VIP || ticket.Type == Ticket.Variants.HELG || ticket.Type == Ticket.Variants.GRATIS)
+                var command = new ZargateLabel(ticket.Navn, ticket.Rad, ticket.Sete, ticket.TypeString,
+                    ticket.RefNr.ToString());
+                if (ticket.Type == Ticket.Variants.VIP || ticket.Type == Ticket.Variants.HELG || ticket.Type == Ticket.Variants.GRATIS || ticket.Type == Ticket.Variants.HELGI)
                 {
-                    command = new ZargateLabel(ticket.Navn, ticket.Rad, ticket.Sete, ticket.TypeString,
-                                               ticket.RefNr.ToString());
                     printer = Printer.Default.PrinterName1;
                 }
                 else if (ticket.Type == Ticket.Variants.HELGU)
                 {
-                    command = new ZargateLabel(ticket.TypeString, ticket.RefNr.ToString(), ticket.Arrived);
                     printer = Printer.Default.PrinterName1;
                 }
                 else
                 {
-                    command = new ZargateLabel(ticket.TypeString, ticket.RefNr.ToString(), ticket.Arrived);
                     printer = Printer.Default.PrinterName2;
                 }
                 string instruction = command.ToZebraInstruction();

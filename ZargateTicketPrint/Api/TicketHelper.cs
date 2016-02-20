@@ -26,7 +26,7 @@ namespace ZargateTicketPrint.Api
                     }
                     else
                     {
-                        tickets.Add(new Ticket(ticketDto.TicketId, (int) ticketDto.Row, (int) ticketDto.Seat, ticketDto.Name,
+                        tickets.Add(new Ticket(ticketDto.TicketId, ticketDto.Row ?? 0, ticketDto.Seat ?? 0, ticketDto.Name,
                             ticketDto.Ref, Ticket.ParseTypeToVariant(ticketDto.Type), arrived));
                     }
                 }

@@ -60,6 +60,7 @@ namespace ZargateTicketPrint.Classes
                     case Variants.HELGU:
                         return "HELG U/PC";
                     case Variants.HELG:
+                    case Variants.HELGI:
                         return "HELG M/PC";
                     case Variants.VIP:
                         return "VIP";
@@ -97,7 +98,8 @@ namespace ZargateTicketPrint.Classes
             HELGU,
             HELG,
             GRATIS,
-            VIP
+            VIP,
+            HELGI
         }
 
         public static Variants ParseTypeToVariant (string variant)
@@ -111,6 +113,8 @@ namespace ZargateTicketPrint.Classes
                 case "HELGU":
                     return Variants.HELGU;
                 case "HELG":
+                    return Variants.HELGI;
+                case "HELGI":
                     return Variants.HELG;
                 case "VIP":
                     return Variants.VIP;

@@ -15,7 +15,8 @@ namespace ZargateTicketPrint.ZebraHelpers
 
         public ZargateLabel(string name, int row, int seat, string type, string barcode)
         {
-            //name = name.ToUpper().Replace("Ø", "O").Replace("Æ", "AE").Replace("Å", "A");
+            name = name.ToUpper().Replace("Ø", "O").Replace("Æ", "AE").Replace("Å", "A");
+            name = Cp850Encoding.GetString(UnicodeEncoding.GetBytes(name));
             var command = new LabelBuilder()
                 .Barcode(barcode).At(210, 375)
                 .Image(
