@@ -109,7 +109,7 @@ namespace ZargateTicketPrint
             catch (Exception ex)
             {
                 Logger.Add("Exception: " + ex.Message, Logger.Severity.ERROR);
-                autoPrintStop();
+                //autoPrintStop();
             }
             refreshLogView();
         }
