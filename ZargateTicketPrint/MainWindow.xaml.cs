@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Specialized;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,12 +11,11 @@ using ZargateTicketPrint.ZebraHelpers;
 namespace ZargateTicketPrint
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    ///     Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow
     {
         private readonly DispatcherTimer _printTimer = new DispatcherTimer {Interval = new TimeSpan(3000)};
-        private Thread _printThread;
 
         public MainWindow()
         {
@@ -58,8 +58,8 @@ namespace ZargateTicketPrint
 
 
             txtFetchArrivedEndpoint.Text = Api.Api.Default.FetchArrivedEndpoint;
-            txtSetPrintedEndpoint.Text=Api.Api.Default.SetPrintedEndpoint;
-            txtSecret.Password= Api.Api.Default.Secret;
+            txtSetPrintedEndpoint.Text = Api.Api.Default.SetPrintedEndpoint;
+            txtSecret.Password = Api.Api.Default.Secret;
 
             if (txtFetchArrivedEndpoint.Text == "" || txtSetPrintedEndpoint.Text == "" ||
                 txtSecret.Password == "")
@@ -73,14 +73,15 @@ namespace ZargateTicketPrint
             TrayIcon.TrayMouseDoubleClick += TrayIcon_TrayMouseDoubleClick;
         }
 
-        void MainWindow_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void MainWindow_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             refreshLogView();
-            if (_printTimer.IsEnabled && Logger.GetLog()[Logger.GetLog().Count-1].Severity == Logger.Severity.ERROR)
+            if (_printTimer.IsEnabled && Logger.GetLog()[Logger.GetLog().Count - 1].Severity == Logger.Severity.ERROR)
             {
                 autoPrintStop();
             }
         }
+
         private void TrayIcon_TrayMouseDoubleClick(object sender, RoutedEventArgs e)
         {
             Show();
@@ -141,7 +142,7 @@ namespace ZargateTicketPrint
             Api.Api.Default.Secret = txtSecret.Password;
             Api.Api.Default.Save();
 
-            if (txtFetchArrivedEndpoint.Text == "" || txtSetPrintedEndpoint.Text == ""  ||
+            if (txtFetchArrivedEndpoint.Text == "" || txtSetPrintedEndpoint.Text == "" ||
                 txtSecret.Password == "")
             {
                 btnAutoPrintStart.IsEnabled = false;
