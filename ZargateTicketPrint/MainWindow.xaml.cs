@@ -15,7 +15,7 @@ namespace ZargateTicketPrint
     /// </summary>
     public partial class MainWindow
     {
-        private readonly DispatcherTimer _printTimer = new DispatcherTimer {Interval = new TimeSpan(3000)};
+        private readonly DispatcherTimer _printTimer = new DispatcherTimer {Interval = new TimeSpan(0,0,2)};
 
         public MainWindow()
         {
